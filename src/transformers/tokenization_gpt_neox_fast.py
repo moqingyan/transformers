@@ -105,8 +105,8 @@ class GPTNeoXTokenizerFast(PreTrainedTokenizerFast):
         add_prefix_space=False,
         **kwargs,
     ):
-        if not tokenizer_file is None:
-            fast_tokenizer = Tokenizer.from_file(tokenizer_file)
+        # if not tokenizer_file is None:
+        #     fast_tokenizer = Tokenizer.from_file(tokenizer_file)
             
         super().__init__(
             vocab_file,
