@@ -19,6 +19,8 @@ from typing import List, Optional, Tuple
 from tokenizers import pre_tokenizers, processors
 
 from .tokenization_utils_fast import PreTrainedTokenizerFast
+from tokenizers import Tokenizer
+
 import logging
 
 
@@ -103,6 +105,9 @@ class GPTNeoXTokenizerFast(PreTrainedTokenizerFast):
         add_prefix_space=False,
         **kwargs,
     ):
+        if not tokenizer_file is None:
+            fast_tokenizer = Tokenizer.from_file(tokenizer_file)
+            
         super().__init__(
             vocab_file,
             merges_file,
@@ -110,11 +115,13 @@ class GPTNeoXTokenizerFast(PreTrainedTokenizerFast):
             unk_token=unk_token,
             bos_token=bos_token,
             eos_token=eos_token,
-            pad_token=pad_token,
-            add_bos_token=add_bos_token,
-            add_eos_token=add_eos_token,
-            add_prefix_space=add_prefix_space,
-            **kwargs,
+            # pad_token=pad_token,
+            # add_bos_token=add_bos_token,
+            # add_eos_token=add_eos_token,
+            # add_prefix_space=add_prefix_space,
+            padding_side = kwargs['padding_side'],
+            model_max_length = kwargs['model_max_length'],
+            # **kwargs,
         )
 
         self._add_bos_token = add_bos_token
