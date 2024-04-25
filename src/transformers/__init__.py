@@ -20,6 +20,7 @@ else:
 import logging
 
 # Configurations
+from .configuration_gpt_neox import GPT_NEOX_PRETRAINED_CONFIG_ARCHIVE_MAP, GPTNeoXConfig
 from .configuration_albert import ALBERT_PRETRAINED_CONFIG_ARCHIVE_MAP, AlbertConfig
 from .configuration_auto import ALL_PRETRAINED_CONFIG_ARCHIVE_MAP, CONFIG_MAPPING, AutoConfig
 from .configuration_bart import BartConfig
@@ -121,6 +122,7 @@ from .pipelines import (
 )
 
 # Tokenizers
+from .tokenization_gpt_neox_fast import GPTNeoXTokenizerFast
 from .tokenization_albert import AlbertTokenizer
 from .tokenization_auto import TOKENIZER_MAPPING, AutoTokenizer
 from .tokenization_bart import BartTokenizer, BartTokenizerFast, MBartTokenizer
@@ -406,6 +408,18 @@ if is_torch_available():
 
 # TensorFlow
 if is_tf_available():
+    
+    from .modeling_gpt_neox import (
+            GPT_NEOX_PRETRAINED_MODEL_ARCHIVE_LIST,
+            GPTNeoXForCausalLM,
+            GPTNeoXForQuestionAnswering,
+            GPTNeoXForSequenceClassification,
+            GPTNeoXForTokenClassification,
+            GPTNeoXLayer,
+            GPTNeoXModel,
+            GPTNeoXPreTrainedModel,
+        )
+    
     from .modeling_tf_utils import (
         shape_list,
         tf_top_k_top_p_filtering,
